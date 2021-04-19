@@ -50,21 +50,19 @@ public class GameInput : MonoBehaviour
     }
     void DesktopSwipeCheck()
     {
-        float horAxis = Input.GetAxis("Horizontal");
-        float verAxis = Input.GetAxis("Vertical");
-        if (OnSwipeLeft != null && horAxis > 0)
+        if (OnSwipeLeft != null && Input.GetKeyDown(KeyCode.RightArrow))
         {
             OnSwipeRight.Invoke();
         }
-        else if (OnSwipeRight != null && horAxis != 0)
+        else if (OnSwipeRight != null && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             OnSwipeLeft.Invoke();
         }
-        if (OnSwipeUp != null && verAxis > 0)
+        if (OnSwipeUp != null && Input.GetKeyDown(KeyCode.UpArrow))
         {
             OnSwipeUp.Invoke();
         }
-        else if (OnSwipeDown != null && verAxis != 0)
+        else if (OnSwipeDown != null && Input.GetKeyDown(KeyCode.DownArrow))
         {
             OnSwipeDown.Invoke();
         }
