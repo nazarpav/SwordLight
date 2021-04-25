@@ -71,19 +71,18 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-    private void UpdateRuntimeLayer(bool isUp)
+    private void UpdateRuntimeLayerUp()
     {
-        if (isUp && _currentLayer < maxLayer)
+        if (_currentLayer < maxLayer)
         {
-            rigidbody.AddForce(ForceToUp);
             ++_currentLayer;
             UpdateLayersOn_Off();
         }
-        else if (isUp == false && _currentLayer > minLayer)
-        {
-            --_currentLayer;
-            UpdateLayersOn_Off();
-        }
+    }
+    private void UpdateRuntimeLayerDown()
+    {
+        --_currentLayer;
+        UpdateLayersOn_Off();
     }
     void Start()
     {
@@ -145,11 +144,21 @@ public class PlayerController : MonoBehaviour
     }
     void OnMoveUp()
     {
-        UpdateRuntimeLayer(true);
+        if (_currentLayer < maxLayer)
+        {
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0.0f);
+            rigidbody.AddForce(ForceToUp);
+            Invoke("UpdateRuntimeLayerUp", 0.4f);
+        }
     }
     void OnMoveDown()
     {
-        UpdateRuntimeLayer(false);
+        if (_currentLayer > minLayer)
+        {
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0.0f);
+            rigidbody.AddForce(-ForceToUp);
+            UpdateRuntimeLayerDown();
+        }
     }
     void OnJump()
     {

@@ -197,8 +197,8 @@ MonoBehaviour:
   PosYOnBottom: -2.85
   rigidbody: {fileID: 300474547}
   StartVelocity: {x: 10, y: 0}
-  ForceToUp: {x: 0, y: 200}
-  ForceToJump: {x: 0, y: 300}
+  ForceToUp: {x: 0, y: 1200}
+  ForceToJump: {x: 0, y: 1400}
   OnJumpTriggerName: Jump
   OnAttackTriggerName: Attack
   OnRunTriggerName: Run
@@ -217,7 +217,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -2816,7 +2816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &906208322
 Transform:
   m_ObjectHideFlags: 0
@@ -2848,41 +2848,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 906208325}
-    m_ColliderPaths:
-    - - X: -330000000
-        Y: -30000000
-      - X: -330000000
-        Y: -40000000
-      - X: 570000000
-        Y: -40000000
-      - X: 570000000
-        Y: -30000000
-      - X: 100000100
-        Y: -30000000
-      - X: 100000100
-        Y: -30000041
-      - X: 100000041
-        Y: -30000100
-      - X: 89999959
-        Y: -30000100
-      - X: 89999900
-        Y: -30000041
-      - X: 89999900
-        Y: -30000000
-      - X: -219999900
-        Y: -30000000
-      - X: -219999900
-        Y: -30000041
-      - X: -219999959
-        Y: -30000100
-      - X: -230000041
-        Y: -30000100
-      - X: -230000100
-        Y: -30000041
-      - X: -230000100
-        Y: -30000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 56.99997, y: -4}
@@ -4194,7 +4160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1012003452
 Transform:
   m_ObjectHideFlags: 0
@@ -5708,7 +5674,7 @@ MonoBehaviour:
   BottomLeftMarker: {fileID: 1492105514}
   IsLockOnY: 1
   IsLockOnX: 0
-  CamerMoveSpeed: 5
+  CamerMoveSpeed: 0
   Offset: {x: -5, y: 0}
 --- !u!1001 &1492105513
 PrefabInstance:
