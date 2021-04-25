@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class OnGamePauseManager : MonoBehaviour
+public class OnGamePauseManager : BaseWindow
 {
     public Button ContinueButton;
     public Button NON_USE;
@@ -13,24 +15,26 @@ public class OnGamePauseManager : MonoBehaviour
     public Toggle AutoRetryToggle;
     public Toggle ProgressBarVisibleToggle;
     public Toggle AutoCheckpointsToggle;
-    public Animation ShowHideAnimation;
-    public Animator ShowHideAnimator;
+    public string MainMenuSceneName;
     void Start()
     {
-        ContinueButton.onClick.AddListener(ContinueButtonOnClick);
+        ContinueButton?.onClick.AddListener(ContinueButtonOnClick);
+        ExitToMainMenuButton?.onClick.AddListener(ExitToMainMenuButtonOnClick);
     }
-    void Show()
-    {
-        ShowHideAnimation.clip = ShowHideAnimation.GetClip("ShowWindow");
-        ShowHideAnimation.Play();
-    }
-    void Hide()
-    {
-        ShowHideAnimation.clip = ShowHideAnimation.GetClip("HideWindow");
-        ShowHideAnimation.Play();
-    }
+
     void ContinueButtonOnClick()
     {
         Hide();
+    }
+    void ExitToMainMenuButtonOnClick()
+    {
+        try
+        {
+            SceneManager.LoadScene(MainMenuSceneName);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError(ex.Message);
+        }
     }
 }
