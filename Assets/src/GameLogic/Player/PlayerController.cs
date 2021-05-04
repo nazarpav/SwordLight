@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     private void OnDamageApplyed()
     {
         Vector2 vector2 = progressBar.sizeDelta;
-        vector2.x -= 30;
+        vector2.x -= 10;
         progressBar.sizeDelta = vector2;
         animator.SetTrigger(OnMakeDamageTriggerName);
     }
@@ -113,10 +113,10 @@ public class PlayerController : MonoBehaviour
         StartVelocity.y = rigidbody.velocity.y;
         rigidbody.velocity = StartVelocity;
 
-        //if (progressBar.rect.width <= 0)
-        //{
-        //    SceneManager.LoadScene("SampleScene");
-        //}
+        if (progressBar.rect.width <= 0)
+        {
+            SceneManager.LoadScene("scev");
+        }
     }
     private void OnLevelWin()
     {

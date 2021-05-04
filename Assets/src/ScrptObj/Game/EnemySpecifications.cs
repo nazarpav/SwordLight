@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 [Serializable]
 public enum EnemyTypes
@@ -24,7 +21,7 @@ public class EnemySpecification
     public float AttackFrequency;
     public float Damage;
     public float Health;
-    public AnimatorController animator;
+    public RuntimeAnimatorController animator;
 }
 [Serializable]
 [CreateAssetMenu(fileName = "EnemySpecification", menuName = "ScrptObj/EnemySpecification", order = 1)]

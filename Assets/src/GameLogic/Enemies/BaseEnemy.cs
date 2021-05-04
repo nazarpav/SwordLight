@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class BaseEnemy : BaseCreature, IBaseCreatureMovable
@@ -42,7 +41,7 @@ public class BaseEnemy : BaseCreature, IBaseCreatureMovable
                 AttackDelayTime = data.AttackFrequency;
                 Damage = data.Damage;
                 MovedSpeed = data.MoveSpeed;
-                AnimatorController.SetAnimatorController(animator, data.animator);
+                animator.runtimeAnimatorController = data.animator;
                 break;
             }
         }
@@ -179,7 +178,6 @@ class EnemyAI
     BaseEnemy _controlledEnemy;
     float _timeCounter;
     float _attackDelayTime;
-    float _moveDTCounter;
     public EnemyAI(Vector2 baseMovableFrame, VisionObserver wvo, VisionObserver avo, BaseEnemy controllEnemy, float AttackDelayTime)
     {
         _attackDelayTime = AttackDelayTime;
@@ -190,8 +188,6 @@ class EnemyAI
         avo.OnEnter_ += OnPlayerEnteredAttackVision;
         avo.OnExit_ += OnPlayerExitAttackVision;
         _timeCounter = 0.0f;
-        _moveDTCounter = 0.0f;
-        //Random.Range(-10.0f, 10.0f)
     }
     public void Update()
     {
