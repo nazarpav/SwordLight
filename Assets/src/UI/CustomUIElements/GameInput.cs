@@ -15,6 +15,8 @@ public class GameInput : MonoBehaviour
     public event SwipeLeft OnSwipeLeft;
     public delegate void SwipeRight();
     public event SwipeRight OnSwipeRight;
+    public delegate void Tap();
+    public event Tap OnTap;
     public float SWIPE_THRESHOLD = 20f;
 
     private delegate void SwipeCheckCallback();
@@ -66,6 +68,10 @@ public class GameInput : MonoBehaviour
         {
             OnSwipeDown.Invoke();
         }
+        if(OnTap != null && Input.GetKeyDown(KeyCode.Space))
+        {
+            OnTap.Invoke();
+        }
     }
     void PhoneSwipeCheck()
     {
@@ -77,25 +83,25 @@ public class GameInput : MonoBehaviour
                 fingerUp = touch.position;
                 fingerDown = touch.position;
             }
-            //Detects Swipe while finger is still moving
-            if (touch.phase == TouchPhase.Moved)
-            {
-                if (!detectSwipeOnlyAfterRelease)
-                {
-                    fingerDown = touch.position;
-                    checkSwipe();
-                }
-            }
+            ////Detects Swipe while finger is still moving
+            //if (touch.phase == TouchPhase.Moved)
+            //{
+            //    if (!detectSwipeOnlyAfterRelease)
+            //    {
+            //        fingerDown = touch.position;
+            //        CheckSwipeOrClick();
+            //    }
+            //}
             //Detects swipe after finger is released
             if (touch.phase == TouchPhase.Ended)
             {
                 fingerDown = touch.position;
-                checkSwipe();
+                CheckSwipeOrClick();
             }
         }
     }
 
-    void checkSwipe()
+    void CheckSwipeOrClick()
     {
         //Check if Vertical swipe
         if (verticalMove() > SWIPE_THRESHOLD && verticalMove() > horizontalValMove())
@@ -124,6 +130,10 @@ public class GameInput : MonoBehaviour
                 OnSwipeLeft.Invoke();
             }
             fingerUp = fingerDown;
+        }
+        else
+        {
+            OnTap.Invoke();
         }
     }
 
