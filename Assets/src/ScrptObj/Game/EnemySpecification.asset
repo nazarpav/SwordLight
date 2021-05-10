@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17721ca759ff7354385425cb0df04765, type: 3}
+  m_Name: EnemySpecification
+  m_EditorClassIdentifier: 
+  specifications:
+  - type: 0
+    specification:
+      MoveSpeed: 0.04
+      AttackFrequency: 0.5
+      Damage: 40
+      Health: 3
+      animator: {fileID: 9100000, guid: 7e778333baa518c4fbb5063ec1ffb272, type: 2}
+  - type: 1
+    specification:
+      MoveSpeed: 0.06
+      AttackFrequency: 0.5
+      Damage: 40
+      Health: 2
+      animator: {fileID: 9100000, guid: 3f33fb3e4888357448f212c797d9128e, type: 2}
+  - type: 2
+    specification:
+      MoveSpeed: 0.04
+      AttackFrequency: 0.2
+      Damage: 40
+      Health: 2
+      animator: {fileID: 9100000, guid: 673b0db42c74c404eac310be57b49a78, type: 2}
+  - type: 3
+    specification:
+      MoveSpeed: 0.02
+      AttackFrequency: 1
+      Damage: 100
+      Health: 5
+      animator: {fileID: 9100000, guid: 085f3daa1c67898498d0843f865b96f9, type: 2}

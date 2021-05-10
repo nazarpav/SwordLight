@@ -45,13 +45,13 @@ public class GameCameraController : MonoBehaviour
     {
         return (BL_MarkerPos.y > NewCameraPos.y - CameraSize.y || TR_MarkerPos.y < NewCameraPos.y + CameraSize.y) == false;
     }
-    void Update()
+    private void FixedUpdate()
     {
-        NewCameraPos.x = IsLockOnX ? camera.transform.position.x : FollowedObject.transform.position.x;
-        NewCameraPos.y = IsLockOnY ? camera.transform.position.y : FollowedObject.transform.position.y;
-        NewCameraPos.x -= Offset.x;
-        NewCameraPos.y -= Offset.y;
-        //NewCameraPos = Vector3.Lerp(camera.transform.position, NewCameraPos, CamerMoveSpeed * Time.deltaTime);
+        NewCameraPos.x = (IsLockOnX ? camera.transform.position.x : FollowedObject.transform.position.x) - Offset.x;
+        NewCameraPos.y = (IsLockOnY ? camera.transform.position.y : FollowedObject.transform.position.y) - Offset.y;
+        //Vector3 velocity = Vector3.zero;
+        //NewCameraPos = Vector3.SmoothDamp(camera.transform.position, NewCameraPos, ref velocity, CamerMoveSpeed);
+        //NewCameraPos = Vector3.Lerp(camera.transform.position, NewCameraPos, 0.1f);
         if (IsCameraInMarkersRectX())
         {
             NewCameraPosBuf.x = NewCameraPos.x;

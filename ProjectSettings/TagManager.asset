@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Barrier
   - Damage
+  - WeaponFromPlayer
+  - WeaponFromEnemy
   layers:
   - Default
   - TransparentFX
