@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
         if (progressBar.rect.width <= 0)
         {
-            SceneManager.LoadScene("scev");
+            SceneManager.LoadScene("MainWindow");
         }
     }
     private void OnLevelWin()

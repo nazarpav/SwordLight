@@ -6,6 +6,6 @@ public class SceneSwitcher : MonoBehaviour
 {
     public void SwitchLevel(int levelNumber)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("__DEV");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(levelNumber);
     }
 }

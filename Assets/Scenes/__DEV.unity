@@ -11874,7 +11874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7340760411883617366, guid: a5fc81cc938c5de46bc356eeeb08f683, type: 3}
       propertyPath: MainMenuSceneName
-      value: scev
+      value: MainWindow
       objectReference: {fileID: 0}
     - target: {fileID: 8850846823096425623, guid: a5fc81cc938c5de46bc356eeeb08f683, type: 3}
       propertyPath: m_Pivot.x
