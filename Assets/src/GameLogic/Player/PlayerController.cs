@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    Image image;
     public Animator animator;
     public GameObject StartPosition;
     public Rigidbody2D rigidbody;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private bool _isGameOver;
     void Start()
     {
+        //image.rectTransform.
         InitInput();
         ForceToUp.x = 0;
         OnGameRestart_TMP();
@@ -41,9 +43,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnGameOver()
     {
-        //OnGameRestart_TMP();
-        //progressBar.rect.size.Set(progressBarRect.width, progressBar.rect.height);
-        //animator.SetTrigger(OnMakeDamageTriggerName);
+        OnGameRestart_TMP();
+        var rect = progressBar.sizeDelta;
+        rect.Set(progressBarRect.width, progressBar.rect.height);
+        progressBar.sizeDelta = rect;
+        animator.SetTrigger(OnMakeDamageTriggerName);
     }
     private void OnDamageApplyed()
     {
