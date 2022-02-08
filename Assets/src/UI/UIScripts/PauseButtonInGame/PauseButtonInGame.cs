@@ -14,6 +14,7 @@ public class PauseButtonInGame : MonoBehaviour
     }
     void OnButtonClick()
     {
+        OnGamePauseManager.TogglePause();
         onGamePauseManager?.Show();
     }
 }

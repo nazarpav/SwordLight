@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +14,8 @@ public class OnGamePauseManager : BaseWindow
     public Toggle ProgressBarVisibleToggle;
     public Toggle AutoCheckpointsToggle;
     public string MainMenuSceneName;
+    public static bool GameIsPaused { get; set; }
+
     void Start()
     {
         ContinueButton?.onClick.AddListener(ContinueButtonOnClick);
@@ -28,6 +28,7 @@ public class OnGamePauseManager : BaseWindow
     }
     void ExitToMainMenuButtonOnClick()
     {
+        TogglePause();
         try
         {
             SceneManager.LoadScene(MainMenuSceneName);
@@ -36,5 +37,18 @@ public class OnGamePauseManager : BaseWindow
         {
             Debug.LogError(ex.Message);
         }
+    }
+    public static void TogglePause()
+    {
+        //if (GameIsPaused)
+        //{
+        //    GameIsPaused = false;
+        //    Time.timeScale = 1.0f;
+        //}
+        //else
+        //{
+        //    GameIsPaused = true;
+        //    Time.timeScale = 0.0f;
+        //}
     }
 }

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject StartPosition;
     public Rigidbody2D rigidbody;
+    public SpriteRenderer spriteRenderer;
     public float RunVelocity;
     public float MaxVelocity;
     public Vector2 ForceToUp;
@@ -20,25 +21,29 @@ public class PlayerController : MonoBehaviour
     public string OnMakeDamageTriggerName;
     public string OnLayerMovementTriggerName;
     private bool faceRight = true;
-
+    private Rect progressBarRect;
     public RectTransform progressBar;
     public WLayers CurrentLayer { set; get; }
     public WLayers StartLayer;
     private bool _isOnGround;
+    private bool _isGameOver;
     void Start()
     {
         InitInput();
         ForceToUp.x = 0;
         OnGameRestart_TMP();
+        progressBarRect = progressBar.rect;
     }
     private void OnGameRestart_TMP()
     {
+        _isGameOver = false;
         gameObject.transform.position = new Vector3(StartPosition.transform.position.x, StartPosition.transform.position.y, gameObject.transform.position.z);
     }
     private void OnGameOver()
     {
-        animator.SetTrigger(OnMakeDamageTriggerName);
-        OnGameRestart_TMP();
+        //OnGameRestart_TMP();
+        //progressBar.rect.size.Set(progressBarRect.width, progressBar.rect.height);
+        //animator.SetTrigger(OnMakeDamageTriggerName);
     }
     private void OnDamageApplyed()
     {
@@ -52,23 +57,24 @@ public class PlayerController : MonoBehaviour
         //StartVelocity.y = rigidbody.velocity.y;
         //rigidbody.velocity = StartVelocity;
 
-        if (progressBar.rect.width <= 0)
+        if (progressBar.rect.width <= 0 && _isGameOver == false)
         {
-            SceneManager.LoadScene("scev");
+            _isGameOver = true;
+            OnGameOver();
+            // SceneManager.LoadScene("scev");
         }
 
         float moveX = Input.GetAxis("Horizontal");
         rigidbody.velocity = new Vector2(Mathf.Clamp(rigidbody.velocity.x + moveX * RunVelocity * Time.deltaTime, -MaxVelocity, MaxVelocity), rigidbody.velocity.y);
-        if (moveX > 0 && !faceRight)
-            flip();
-        else if (moveX < 0 && faceRight)
-            flip();
-    }
-
-    private void flip()
-    {
-        faceRight = !faceRight;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        if (moveX != 0)
+        {
+            animator.SetTrigger(OnRunTriggerName);
+        }
+        if ((moveX > 0 && faceRight == false) || (moveX < 0 && faceRight))
+        {
+            faceRight = !faceRight;
+            spriteRenderer.flipX = !faceRight;
+        }
     }
     private void OnLevelWin()
     {
